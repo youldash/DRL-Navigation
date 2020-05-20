@@ -11,5 +11,5 @@ By using this site, you agree to the **Terms of Use** that are defined in [LICEN
 
 The goal of this project is to train a so-called [intelligent agent](https://en.wikipedia.org/wiki/Intelligent_agent) to navigate a virtual world (or environment), and collect as many *yellow* bananas as possible while avoiding *blue* bananas.
 
-<div align="center"><img src="https://raw.github.com/youldash/DRL-Navigation/master/misc/banana.gif" width="100%" /></div>
+<div align="center"><img src="misc/banana.gif" width="100%" /></div>
 
