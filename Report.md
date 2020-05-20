@@ -1,6 +1,5 @@
 # Navigation Project (Report)
 
-By:
 [![Twitter Follow](https://img.shields.io/twitter/follow/youldash.svg?style=social?style=plastic)](https://twitter.com/youldash)
 
 ## License
