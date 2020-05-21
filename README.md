@@ -28,4 +28,22 @@ According to **skymind.ai**, the term [Reinforcement Learning (RL)](https://skym
 
 [Deep Reinforcement Learning (DRL)](https://skymind.ai/wiki/deep-reinforcement-learning) combines [Artificial Neural Networks (ANNs)](https://en.wikipedia.org/wiki/Artificial_neural_network) with an RL architecture that enables software-defined agents to learn the best actions possible in virtual environment in order to attain their goals. That is, it unites function approximation and target optimization, mapping state-action pairs to expected rewards.
 
+## Project Environment
+
+The project development environment is based on [Unity](https://unity.com)'s [Machine Learning Agents Toolkit (ML-Agents)](https://github.com/Unity-Technologies/ml-agents). The [toolkit](https://unity3d.ai/) is an open-source Unity plugin that enables games and simulations to serve as environments for training intelligent agents.
+
+The project environment is similar to, **but not identical to** the Banana Collector environment on the Unity ML-Agents GitHub page.
+
+### The Banana Collector
+
+A reward of` +1` is provided for collecting a yellow banana, and a reward of `-1` is provided for collecting a blue banana. Thus, the goal of the agent is to collect as many yellow bananas as possible while avoiding blue bananas.
+
+## The State Space
+
+The state space has 37-dimensions and contains the agent's velocity, along with ray-based perception of objects around the agent's forward direction. Given this information, the agent has to learn how to best select actions. Four discrete actions are available, corresponding to:
+
+- `0` - move forward.
+- `1` - move backward.
+- `2` - turn left.
+- `3` - turn right.
 
