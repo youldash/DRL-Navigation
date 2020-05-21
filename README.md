@@ -61,10 +61,10 @@ __For Windows users:__ The ML-Agents toolkit supports **Windows 10**. While it m
 
 For this project, you will **not** need to install Unity - this is because Udacity has already built the environment for you (for convenience), and you can download it from one of the links below. You need only select the environment that matches your operating system:
 
-- __Linux__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
-- __macOS__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
-- __Windows (32-bit)__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
-- __Windows (64-bit)__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
+- __Linux__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip).
+- __macOS__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip).
+- __Windows (32-bit)__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip).
+- __Windows (64-bit)__ [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip).
 
 Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository (provided that you have already completed Step 1), and unzip (or decompress) the file.
 
