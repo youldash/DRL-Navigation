@@ -1,0 +1,750 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Navigation}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Navigation - Using
+Double-DQN}\label{navigation---using-double-dqn}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+You are welcome to use this coding environment to train your agent for
+the project. Follow the instructions below to get started!
+
+\subsubsection{1. Start the Environment}\label{start-the-environment}
+
+Run the next code cell to install a few packages. This line will take a
+few minutes to run!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{!}pip \PYZhy{}q install ./python
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-red}{tensorflow 1.7.1 has requirement numpy>=1.13.3, but you'll have numpy 1.12.1 which is incompatible.}
+\textcolor{ansi-red}{ipython 6.5.0 has requirement prompt-toolkit<2.0.0,>=1.0.15, but you'll have prompt-toolkit 3.0.5 which is incompatible.}
+
+    \end{Verbatim}
+
+    The environment is already saved in the Workspace and can be accessed at
+the file path provided below. Please run the next code cell without
+making any changes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Imports.}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{c+c1}{\PYZsh{} High\PYZhy{}resolution plots for retina displays.}
+        \PY{o}{\PYZpc{}}\PY{k}{config} InlineBackend.figure\PYZus{}format = \PYZsq{}retina\PYZsq{}
+        
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{torch}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        
+        \PY{c+c1}{\PYZsh{} Hide any deprecate warnings.}
+        \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Utility imports.}
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k}{import} \PY{n}{deque}
+        \PY{k+kn}{from} \PY{n+nn}{unityagents} \PY{k}{import} \PY{n}{UnityEnvironment}
+        
+        \PY{c+c1}{\PYZsh{} Agents interact with, and learns from environments.}
+        \PY{k+kn}{from} \PY{n+nn}{agent} \PY{k}{import} \PY{n}{Agent}
+        
+        \PY{c+c1}{\PYZsh{} Please do not modify the line below.}
+        \PY{n}{env\PYZus{}path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/data/Banana\PYZus{}Linux\PYZus{}NoVis/Banana.x86\PYZus{}64}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{env} \PY{o}{=} \PY{n}{UnityEnvironment}\PY{p}{(}\PY{n}{file\PYZus{}name}\PY{o}{=}\PY{n}{env\PYZus{}path}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO:unityagents:
+'Academy' started successfully!
+Unity Academy name: Academy
+        Number of Brains: 1
+        Number of External Brains : 1
+        Lesson number : 0
+        Reset Parameters :
+		
+Unity brain name: BananaBrain
+        Number of Visual Observations (per agent): 0
+        Vector Observation space type: continuous
+        Vector Observation space size (per agent): 37
+        Number of stacked Vector Observation: 1
+        Vector Action space type: discrete
+        Vector Action space size (per agent): 4
+        Vector Action descriptions: , , , 
+
+    \end{Verbatim}
+
+    \paragraph{Obtain NVidia GPU
+information}\label{obtain-nvidia-gpu-information}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Set the working device on the NVIDIA Tesla K80 accelerator GPU (depending on availability).}
+        \PY{c+c1}{\PYZsh{} Otherwise we use the CPU.}
+        \PY{n}{device} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{device}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cuda}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{torch}\PY{o}{.}\PY{n}{cuda}\PY{o}{.}\PY{n}{is\PYZus{}available}\PY{p}{(}\PY{p}{)} \PY{k}{else} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cpu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Using device:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{device}\PY{p}{)}\PY{o}{.}\PY{n}{upper}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Log additional info (when using the NVIDIA Tesla K80 accelerator).}
+        \PY{c+c1}{\PYZsh{} See \PYZlt{}https://www.nvidia.com/en\PYZhy{}gb/data\PYZhy{}center/tesla\PYZhy{}k80/\PYZgt{}.}
+        \PY{k}{if} \PY{n}{device}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cuda}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{cuda}\PY{o}{.}\PY{n}{get\PYZus{}device\PYZus{}name}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Memory Usage:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Allocated:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{cuda}\PY{o}{.}\PY{n}{memory\PYZus{}allocated}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{1024}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cached:   }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{cuda}\PY{o}{.}\PY{n}{memory\PYZus{}cached}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{1024}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Using device: CUDA
+
+Tesla K80
+Memory Usage:
+Allocated: 0.0 GB
+Cached:    0.0 GB
+
+    \end{Verbatim}
+
+    Environments contain \textbf{\emph{brains}} which are responsible for
+deciding the actions of their associated agents. Here we check for the
+first brain available, and set it as the default brain we will be
+controlling from Python.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Get the default brain.}
+        \PY{n}{brain\PYZus{}name} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{brain\PYZus{}names}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{brain} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{brains}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}
+\end{Verbatim}
+
+    \subsubsection{2. Examine the State and Action
+Spaces}\label{examine-the-state-and-action-spaces}
+
+Run the code cell below to print some information about the environment.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Reset the environment.}
+        \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{reset}\PY{p}{(}\PY{n}{train\PYZus{}mode}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Number of agents in the environment.}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of agents:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{agents}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Number of actions.}
+        \PY{n}{action\PYZus{}size} \PY{o}{=} \PY{n}{brain}\PY{o}{.}\PY{n}{vector\PYZus{}action\PYZus{}space\PYZus{}size}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of actions:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{action\PYZus{}size}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Examine the state space.}
+        \PY{n}{state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{States look like:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{state}\PY{p}{)}
+        \PY{n}{state\PYZus{}size} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{States have length:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{state\PYZus{}size}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of agents: 1
+Number of actions: 4
+States look like: [ 1.          0.          0.          0.          0.84408134  0.          0.
+  1.          0.          0.0748472   0.          1.          0.          0.
+  0.25755     1.          0.          0.          0.          0.74177343
+  0.          1.          0.          0.          0.25854847  0.          0.
+  1.          0.          0.09355672  0.          1.          0.          0.
+  0.31969345  0.          0.        ]
+States have length: 37
+
+    \end{Verbatim}
+
+    \subsubsection{3. Take Random Actions in the
+Environment}\label{take-random-actions-in-the-environment}
+
+In the next code cell, you will learn how to use the Python API to
+control the agent and receive feedback from the environment.
+
+Note that \textbf{in this coding environment, you will not be able to
+watch the agent while it is training}, and you should set
+\texttt{train\_mode=True} to restart the environment.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{reset}\PY{p}{(}\PY{n}{train\PYZus{}mode}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}  \PY{c+c1}{\PYZsh{} Reset the environment.}
+        \PY{n}{state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}            \PY{c+c1}{\PYZsh{} Get the current state.}
+        \PY{n}{score} \PY{o}{=} \PY{l+m+mi}{0}                                          \PY{c+c1}{\PYZsh{} Initialize the score.}
+        \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+            \PY{n}{action} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{action\PYZus{}size}\PY{p}{)}        \PY{c+c1}{\PYZsh{} Select an action.}
+            \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{n}{action}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}        \PY{c+c1}{\PYZsh{} Send the action to the environment.}
+            \PY{n}{next\PYZus{}state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}   \PY{c+c1}{\PYZsh{} Get the next state.}
+            \PY{n}{reward} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{rewards}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                   \PY{c+c1}{\PYZsh{} Get the reward.}
+            \PY{n}{done} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{local\PYZus{}done}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                  \PY{c+c1}{\PYZsh{} See if episode has finished.}
+            \PY{n}{score} \PY{o}{+}\PY{o}{=} \PY{n}{reward}                                \PY{c+c1}{\PYZsh{} Update the score.}
+            \PY{n}{state} \PY{o}{=} \PY{n}{next\PYZus{}state}                             \PY{c+c1}{\PYZsh{} Roll over the state to next time step.}
+            \PY{k}{if} \PY{n}{done}\PY{p}{:}                                       \PY{c+c1}{\PYZsh{} Exit loop if episode finished.}
+                \PY{k}{break}
+            
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Score: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{score}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Score: 0.0
+
+    \end{Verbatim}
+
+    \subsubsection{4. It's Your Turn!}\label{its-your-turn}
+
+Now it's your turn to train your own agent to solve the environment! A
+few \textbf{important notes}: - When training the environment, set
+\texttt{train\_mode=True}, so that the line for resetting the
+environment looks like the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{env_info }\OperatorTok{=}\NormalTok{ env.reset(train_mode}\OperatorTok{=}\VariableTok{True}\NormalTok{)[brain_name]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To structure your work, you're welcome to work directly in this
+  Jupyter notebook, or you might like to start over with a new file! You
+  can see the list of files in the workspace by clicking on
+  \textbf{\emph{Jupyter}} in the top left corner of the notebook.
+\item
+  In this coding environment, you will not be able to watch the agent
+  while it is training. However, \textbf{\emph{after training the
+  agent}}, you can download the saved model weights to watch the agent
+  on your own machine!
+\end{itemize}
+
+    \paragraph{Define the Training
+Function}\label{define-the-training-function}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Global configuration.}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{TOGGLE\PYZus{}DOUBLE\PYZus{}DQN} \PY{o}{=} \PY{k+kc}{True}            \PY{c+c1}{\PYZsh{} True for the Double\PYZhy{}DQN method. False for the fixed Q\PYZhy{}target method.}
+        \PY{n}{TOGGLE\PYZus{}DUELING\PYZus{}NETWORK} \PY{o}{=} \PY{k+kc}{False}      \PY{c+c1}{\PYZsh{} True for the Dueling Network (DN) method.}
+        \PY{n}{TOGGLE\PYZus{}PRIORITIZED\PYZus{}REPLAY} \PY{o}{=} \PY{k+kc}{False}   \PY{c+c1}{\PYZsh{} True for the Prioritized Replay memory buffer.}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{dqn}\PY{p}{(}\PY{n}{n\PYZus{}episodes}\PY{o}{=}\PY{l+m+mf}{2e3}\PY{p}{,} \PY{n}{max\PYZus{}t}\PY{o}{=}\PY{n+nb}{int}\PY{p}{(}\PY{l+m+mf}{1e3}\PY{p}{)}\PY{p}{,} \PY{n}{eps\PYZus{}start}\PY{o}{=}\PY{l+m+mf}{1.}\PY{p}{,} \PY{n}{eps\PYZus{}end}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{n}{eps\PYZus{}decay}\PY{o}{=}\PY{l+m+mf}{995e\PYZhy{}3}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Implementation of the Deep Q\PYZhy{}Network (DQN) algorithm.}
+        \PY{l+s+sd}{    }
+        \PY{l+s+sd}{    Params}
+        \PY{l+s+sd}{    ======}
+        \PY{l+s+sd}{        n\PYZus{}episodes (int): Maximum number of training episodes}
+        \PY{l+s+sd}{        max\PYZus{}t (int): Maximum number of timesteps per episode}
+        \PY{l+s+sd}{        eps\PYZus{}start (float): Starting value of epsilon (ε), for epsilon\PYZhy{}greedy action selection}
+        \PY{l+s+sd}{        eps\PYZus{}end (float): Minimum value of epsilon (ε)}
+        \PY{l+s+sd}{        eps\PYZus{}decay (float): Multiplicative factor (per episode, ε) for decreasing epsilon}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            
+            \PY{c+c1}{\PYZsh{} List containing scores from each episode.}
+            \PY{n}{scores} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} List the mean of the window scores.}
+            \PY{n}{scores\PYZus{}mean} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{} Last 100 scores.}
+            \PY{n}{scores\PYZus{}window} \PY{o}{=} \PY{n}{deque}\PY{p}{(}\PY{n}{maxlen}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} Initialize epsilon (ε).}
+            \PY{n}{eps} \PY{o}{=} \PY{n}{eps\PYZus{}start}
+            
+            \PY{k}{for} \PY{n}{i\PYZus{}episode} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n\PYZus{}episodes}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{n}{state} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{reset}\PY{p}{(}\PY{n}{train\PYZus{}mode}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{score} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}t}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{action} \PY{o}{=} \PY{n}{agent}\PY{o}{.}\PY{n}{act}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{eps}\PY{p}{)}
+                    \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{n}{action}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}        \PY{c+c1}{\PYZsh{} Send the action to the environment.}
+                    \PY{n}{next\PYZus{}state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}   \PY{c+c1}{\PYZsh{} Get the next state.}
+                    \PY{n}{reward} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{rewards}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                   \PY{c+c1}{\PYZsh{} Get the reward.}
+                    \PY{n}{done} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{local\PYZus{}done}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                  \PY{c+c1}{\PYZsh{} Gee if episode has finished.}
+                    \PY{n}{agent}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{action}\PY{p}{,} \PY{n}{reward}\PY{p}{,} \PY{n}{next\PYZus{}state}\PY{p}{,} \PY{n}{done}\PY{p}{)}
+                    \PY{n}{state} \PY{o}{=} \PY{n}{next\PYZus{}state}
+                    \PY{n}{score} \PY{o}{+}\PY{o}{=} \PY{n}{reward}
+                    \PY{k}{if} \PY{n}{done}\PY{p}{:}
+                        \PY{k}{break} 
+                
+                \PY{c+c1}{\PYZsh{} Save most recent score.}
+                \PY{n}{scores}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Save most recent score.}
+                \PY{n}{scores\PYZus{}window}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+                \PY{n}{scores\PYZus{}mean}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{scores\PYZus{}window}\PY{p}{)}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Log the scores.}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+s1}{EPISODE }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{AVG SCORE: }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{EPS: }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{LEARNING RATE: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+                      \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i\PYZus{}episode}\PY{p}{,} \PY{n}{scores\PYZus{}mean}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{eps}\PY{p}{,} \PY{n}{agent}\PY{o}{.}\PY{n}{lr\PYZus{}scheduler}\PY{o}{.}\PY{n}{get\PYZus{}lr}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} Decrease epsilon.}
+                \PY{n}{eps} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{eps\PYZus{}end}\PY{p}{,} \PY{n}{eps\PYZus{}decay}\PY{o}{*}\PY{n}{eps}\PY{p}{)}
+        
+                \PY{k}{if} \PY{n}{i\PYZus{}episode} \PY{o}{\PYZpc{}} \PY{l+m+mi}{100} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+s1}{EPISODE }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{AVG SCORE: }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{EPS: }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{LEARNING RATE: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                        \PY{n}{i\PYZus{}episode}\PY{p}{,} \PY{n}{scores\PYZus{}mean}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{eps}\PY{p}{,} \PY{n}{agent}\PY{o}{.}\PY{n}{lr\PYZus{}scheduler}\PY{o}{.}\PY{n}{get\PYZus{}lr}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                    
+                \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{scores\PYZus{}window}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mf}{13.}\PY{p}{:}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Environment solved in }\PY{l+s+si}{\PYZob{}:d\PYZcb{}}\PY{l+s+s1}{ episodes.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Average score: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                        \PY{n}{i\PYZus{}episode}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{scores\PYZus{}window}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{torch}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{n}{agent}\PY{o}{.}\PY{n}{qnetwork\PYZus{}local}\PY{o}{.}\PY{n}{state\PYZus{}dict}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{models/checkpoint\PYZus{}double\PYZus{}dqn.pth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Model saved successfully.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                    \PY{k}{break}
+                    
+            \PY{c+c1}{\PYZsh{} Return the scores.}
+            \PY{k}{return} \PY{n}{scores}\PY{p}{,} \PY{n}{scores\PYZus{}mean}
+\end{Verbatim}
+
+    \paragraph{Create and Train the Agent}\label{create-and-train-the-agent}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Initialize a DQN agent instance.}
+        \PY{n}{agent} \PY{o}{=} \PY{n}{Agent}\PY{p}{(}
+            \PY{n}{state\PYZus{}size}\PY{o}{=}\PY{n}{state\PYZus{}size}\PY{p}{,} \PY{n}{action\PYZus{}size}\PY{o}{=}\PY{n}{action\PYZus{}size}\PY{p}{,} \PY{n}{seed}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}
+            \PY{n}{double\PYZus{}dqn}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}DOUBLE\PYZus{}DQN}\PY{p}{,}
+            \PY{n}{dueling\PYZus{}network}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}DUELING\PYZus{}NETWORK}\PY{p}{,}
+            \PY{n}{prioritized\PYZus{}replay}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}PRIORITIZED\PYZus{}REPLAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Monitor training time (start time).}
+        \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Now, we train the agent.}
+        \PY{n}{scores}\PY{p}{,} \PY{n}{mean} \PY{o}{=} \PY{n}{dqn}\PY{p}{(}\PY{n}{n\PYZus{}episodes}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{,} \PY{n}{max\PYZus{}t}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{,} \PY{n}{eps\PYZus{}start}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}1}\PY{p}{,} \PY{n}{eps\PYZus{}end}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{n}{eps\PYZus{}decay}\PY{o}{=}\PY{l+m+mf}{987e\PYZhy{}3}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Monitor training time (end time).}
+        \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{p}{(}\PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{start\PYZus{}time}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{6e1}
+        
+        \PY{c+c1}{\PYZsh{} Log the runtime.}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Solved in }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ minutes.}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{end\PYZus{}time}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+EPISODE 100	AVG SCORE: 10.6100	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
+EPISODE 182	AVG SCORE: 13.0300	EPS: 0.0100	LEARNING RATE: [0.00012278292199717212]
+
+Environment solved in 82 episodes.
+Average score: 13.03.
+Model saved successfully.
+
+Solved in 3.71 minutes.
+
+    \end{Verbatim}
+
+    \paragraph{Plot the Results}\label{plot-the-results}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Plot the scores using matplotlib.}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ggplot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{111}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rewards \PYZhy{} Using Double\PYZhy{}DQN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scores}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{scores}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{mean}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{mean}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Episode \PYZsh{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{xx\PYZhy{}large}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Reveal the plot.}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Reset the Environment}\label{reset-the-environment}
+
+    Now, we reset the environment and load the saved model (checkpoint) for
+further training.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k}{try}\PY{p}{:}
+             \PY{n}{env}
+         \PY{k}{except}\PY{p}{:}
+             \PY{n}{env} \PY{o}{=} \PY{n}{UnityEnvironment}\PY{p}{(}\PY{n}{env\PYZus{}path}\PY{p}{)} \PY{c+c1}{\PYZsh{} Should be \PYZdq{}/data/Banana\PYZus{}Linux\PYZus{}NoVis/Banana.x86\PYZus{}64\PYZdq{}.}
+             
+             \PY{c+c1}{\PYZsh{} Get the default brain.}
+             \PY{n}{brain\PYZus{}name} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{brain\PYZus{}names}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{brain} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{brains}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} Get the environment info (reusing code from above).}
+             \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{reset}\PY{p}{(}\PY{n}{train\PYZus{}mode}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} Number of actions.}
+             \PY{n}{action\PYZus{}size} \PY{o}{=} \PY{n}{brain}\PY{o}{.}\PY{n}{vector\PYZus{}action\PYZus{}space\PYZus{}size}
+         
+             \PY{c+c1}{\PYZsh{} Examine the state space.}
+             \PY{n}{state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{state\PYZus{}size} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Initialize a DQN agent instanceins.}
+             \PY{n}{agent} \PY{o}{=} \PY{n}{Agent}\PY{p}{(}
+                 \PY{n}{state\PYZus{}size}\PY{o}{=}\PY{n}{state\PYZus{}size}\PY{p}{,} \PY{n}{action\PYZus{}size}\PY{o}{=}\PY{n}{action\PYZus{}size}\PY{p}{,} \PY{n}{seed}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{lr\PYZus{}decay}\PY{o}{=}\PY{l+m+mf}{9999e\PYZhy{}4}\PY{p}{,}
+                 \PY{n}{double\PYZus{}dqn}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}DOUBLE\PYZus{}DQN}\PY{p}{,}
+                 \PY{n}{dueling\PYZus{}network}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}DUELING\PYZus{}NETWORK}\PY{p}{,}
+                 \PY{n}{prioritized\PYZus{}replay}\PY{o}{=}\PY{n}{TOGGLE\PYZus{}PRIORITIZED\PYZus{}REPLAY}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Load the saved model (checkpoint).}
+         \PY{n}{state\PYZus{}dict} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{models/checkpoint\PYZus{}double\PYZus{}dqn.pth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{agent}\PY{o}{.}\PY{n}{qnetwork\PYZus{}local}\PY{o}{.}\PY{n}{load\PYZus{}state\PYZus{}dict}\PY{p}{(}\PY{n}{state\PYZus{}dict}\PY{p}{)}
+         \PY{n}{agent}\PY{o}{.}\PY{n}{qnetwork\PYZus{}local}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Try different parameters.}
+         \PY{n}{max\PYZus{}t} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{l+m+mf}{3e2}\PY{p}{)}
+         \PY{n}{n\PYZus{}episodes} \PY{o}{=} \PY{l+m+mi}{5} \PY{c+c1}{\PYZsh{} 10.}
+         
+         \PY{c+c1}{\PYZsh{} Monitor training time (start time).}
+         \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} List containing scores from each episode.}
+         \PY{n}{scores} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} List the mean of the window scores.}
+         \PY{n}{scores\PYZus{}mean} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{i\PYZus{}episode} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{n\PYZus{}episodes}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             \PY{n}{state} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{reset}\PY{p}{(}\PY{n}{train\PYZus{}mode}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{score} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}t}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{action} \PY{o}{=} \PY{n}{agent}\PY{o}{.}\PY{n}{act}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+                 \PY{n}{env\PYZus{}info} \PY{o}{=} \PY{n}{env}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{n}{action}\PY{p}{)}\PY{p}{[}\PY{n}{brain\PYZus{}name}\PY{p}{]}        \PY{c+c1}{\PYZsh{} Send the action to the environment.}
+                 \PY{n}{next\PYZus{}state} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{vector\PYZus{}observations}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}   \PY{c+c1}{\PYZsh{} Get the next state.}
+                 \PY{n}{reward} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{rewards}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                   \PY{c+c1}{\PYZsh{} Get the reward.}
+                 \PY{n}{done} \PY{o}{=} \PY{n}{env\PYZus{}info}\PY{o}{.}\PY{n}{local\PYZus{}done}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}                  \PY{c+c1}{\PYZsh{} Gee if episode has finished.}
+                 \PY{n}{state} \PY{o}{=} \PY{n}{next\PYZus{}state}
+                 \PY{n}{score} \PY{o}{+}\PY{o}{=} \PY{n}{reward}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+s1}{EPISODE }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{SCORE: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i\PYZus{}episode}\PY{p}{,} \PY{n}{score}\PY{p}{)}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{done}\PY{p}{:}
+                     \PY{k}{break} 
+         
+             \PY{c+c1}{\PYZsh{} Save most recent score.}
+             \PY{n}{scores}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Save most recent score.}
+             \PY{n}{scores\PYZus{}mean}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{scores}\PY{p}{)}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Log the current episode.}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+s1}{EPISODE }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{SCORE: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i\PYZus{}episode}\PY{p}{,} \PY{n}{scores}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Monitor training time (end time).}
+         \PY{n}{end\PYZus{}time} \PY{o}{=} \PY{p}{(}\PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{start\PYZus{}time}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{6e1}
+         
+         \PY{c+c1}{\PYZsh{} Log the runtime.}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Runtime: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ minutes.}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{end\PYZus{}time}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+EPISODE 1	SCORE: 14.00
+EPISODE 2	SCORE: 12.00
+EPISODE 3	SCORE: 19.00
+EPISODE 4	SCORE: 3.00
+EPISODE 5	SCORE: 18.00
+
+Runtime: 2.49 minutes.
+
+    \end{Verbatim}
+
+    \paragraph{We're Finished!}\label{were-finished}
+
+    When finished, you can close the environment.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{env}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
