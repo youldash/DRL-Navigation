@@ -164,7 +164,7 @@ In all of our experiments a set of tuning parameters (or rather **hyperparameter
 
 In all the Jupyter notebooks of tis repo you may tweak the following parameters:
 
-''' Python
+``` Python
 def dqn(n_episodes=2e3, max_t=int(1e3), eps_start=1., eps_end=1e-2, eps_decay=995e-3):
     """ Implementation of the Deep Q-Network (DQN) algorithm.
     
@@ -176,7 +176,7 @@ def dqn(n_episodes=2e3, max_t=int(1e3), eps_start=1., eps_end=1e-2, eps_decay=99
         eps_end (float): Minimum value of epsilon (ε)
         eps_decay (float): Multiplicative factor (per episode, ε) for decreasing epsilon
     """
-'''
+```
 
 ## Conclusion and Future Work
 
