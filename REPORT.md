@@ -121,7 +121,11 @@ Here, the number of episodes are significantly higher, and the time taken to sol
 
 After concluding our tests using the **DN** architecture, we sought to accommodate a version that would combine both **Double-DQNs** and **DNs** in one reliable architecture to see whether this combination might actually end up outperforming all the previous test runs. To achieve this, we enabled/allowed ALL of our notebooks to globally set the appropriate parameters/flags prior training and testing.
 
-In the [`NavigationUsingDoubleDQNWithDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQNWithDuelingNetwork.ipynb) notebook file you can see that there are three flags that can be toggled (on or off). The following snippet depicts these three variables:
+### Attempts Using Double-DQNs + DNs
+
+- Using the **benchmark** `model` configuration, we strived to achieve better results that those obtained by the previous attempts. As a result, we achieved outcomes that are considered better than the attempts made by the previous **DN** implementation (yet not better than the plain-vanilla **DQN** approach in terms of the number of episodes noted).
+
+- In the [`NavigationUsingDoubleDQNWithDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQNWithDuelingNetwork.ipynb) notebook file you can see that there are three flags that can be toggled (on or off). The following snippet depicts these three variables:
 
 ``` Python
 """ Global configuration.
@@ -131,8 +135,26 @@ TOGGLE_DUELING_NETWORK = True       # True for the Dueling Network (DN) method.
 TOGGLE_PRIORITIZED_REPLAY = False   # True for the Prioritized Replay memory buffer.
 ```
 
+### Rewards Plot
 
+The following graph illustrated the outcomes:
 
+![](./plots/RewardsUsingDoubleDQNWithDuelingNetwork.png)
+
+The trained agent, as witnesses in the accompanying   [`NavigationUsingDoubleDQNWithDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQNWithDuelingNetwork.ipynb) notebook file, revealed the following results:
+
+```
+EPISODE 100	AVG SCORE: 10.3200	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
+EPISODE 158	AVG SCORE: 13.0600	EPS: 0.0128	LEARNING RATE: [0.00014699916918461692]
+
+Environment solved in 58 episodes.
+Average score: 13.06.
+Model saved successfully.
+
+Solved in 4.06 minutes.
+```
+
+Although the environment was solved in lesser time as we compared it against the plain **DN** approach, the number of episodes reached were a little higher than the **benchmark** `model` configuration.
 
 ## Parameter Tuning
 
