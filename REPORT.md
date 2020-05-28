@@ -158,4 +158,26 @@ Although the environment was solved in lesser time as we compared it against the
 
 ## Parameter Tuning
 
-TBA...
+In all of our experiments a set of tuning parameters (or rather **hyperparameter**) enabled us to explore the possible variations possible for achieving the results (both reported here, and others expected in future tuning attempts). Ideally, it is worthy to mention that one single hyperparameter configuration might work with one `model`, and may well **NOT** be suitable with others.
+
+### Notebook Parameters
+
+In all the Jupyter notebooks of tis repo you may tweak the following parameters:
+
+''' Python
+def dqn(n_episodes=2e3, max_t=int(1e3), eps_start=1., eps_end=1e-2, eps_decay=995e-3):
+    """ Implementation of the Deep Q-Network (DQN) algorithm.
+    
+    Params
+    ======
+        n_episodes (int): Maximum number of training episodes
+        max_t (int): Maximum number of timesteps per episode
+        eps_start (float): Starting value of epsilon (ε), for epsilon-greedy action selection
+        eps_end (float): Minimum value of epsilon (ε)
+        eps_decay (float): Multiplicative factor (per episode, ε) for decreasing epsilon
+    """
+'''
+
+## Conclusion and Future Work
+
+
