@@ -220,9 +220,20 @@ def __init__(
         double_dqn (bool): Toogle for using the Double-DQN method
         dueling_network (bool): Toogle for using the Dueling Network (DN) method
         prioritized_replay (bool): Toogle for using the Prioritized Replay method
-        """
+    """
 ```
 
 ## Conclusion and Future Work
 
+This report presented out work in training an agent to solve the environment, while considering varying architectures to determine which `model` configuration would be deemed the best in our experiments. In all attempts the results shown in the [first part](https://github.com/youldash/DRL-Navigation/blob/master/REPORT.md#the-deep-q-network-algorithm) set the benchmark for future attempts. 
 
+The work presented herein was made possible using Udacity's [NVIDIA Tesla K80 accelerator GPU](https://www.nvidia.com/en-gb/data-center/tesla-k80/) architecture. In future works we plan on implementing (and training all agents) locally using NVIDIA GPUs (both internally, and externally mounted using eGPU enclosures).
+
+Although the [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) memory buffer algorithm was mentioned above, we did not fully test its implementation and made this a possible "future work" attempt.
+ 
+With the possibility of reaching better outcomes by tweaking the parameters a bit (as seen above), perhaps it it noteworthy to include other state-of-the-art algorithm implementations and compare them against our **benchmark**. These of which include (and are not limited to) the following:
+
+* [Distributional-DQNs](https://arxiv.org/abs/1707.06887) by Marc G. Bellemare, Will Dabney, and Rémi Munos.
+* [Noisy Networks](https://arxiv.org/abs/1706.10295) by Meire Fortunato, Mohammad Gheshlaghi Azar, Bilal Piot, Jacob Menick, Ian Osband, Alex Graves, Vlad Mnih, Remi Munos, Demis Hassabis, Olivier Pietquin, Charles Blundell, and Shane Legg.
+* [Asynchronous Methods for DRL](https://arxiv.org/abs/1602.01783) by Volodymyr Mnih, Adrià Puigdomènech Badia, Mehdi Mirza, Alex Graves, Timothy P. Lillicrap, Tim Harley, David Silver, and Koray Kavukcuoglu.
+* And others...
