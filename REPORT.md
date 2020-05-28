@@ -56,7 +56,7 @@ Solved in 3.63 minutes.
 
 ## The Double Deep Q-Network Algorithm
 
-After we concluded our tests using the baseline DQN algorithm, we sought to include a version of the **Double Deep Q-Network (Double-DQN)** algorithm. According to [literature](https://arxiv.org/abs/1509.06461), this approach aims to reduce the overestimations that are otherwise detected in the aforementioned approach (*i.e.* the vanilla **DQN**) while training in game simulations/environments. See `model.py` for more details.
+After we concluded our tests using the baseline **DQN** algorithm, we sought to include a version of the **Double Deep Q-Network (Double-DQN)** algorithm. According to [literature](https://arxiv.org/abs/1509.06461), this approach aims to reduce the overestimations that are otherwise detected in the aforementioned approach (*i.e.* the vanilla **DQN**) while training in game simulations/environments. See `model.py` for more details.
 
 ### Attempts Using Double-DQNs
 
@@ -83,7 +83,39 @@ Model saved successfully.
 Solved in 3.71 minutes.
 ```
 
-Here, the number of episodes exceeded the **benchmark** `model` by 8 episodes.
+Here, the number of episodes exceeded the **benchmark** by 8 episodes only.
+
+## The Dueling Q-Network Algorithm
+
+After we concluded our previous tests using the **Double-DQN** algorithm, we sought to accommodate a version of the **Dueling Q-Network** which is commonly abbreviated as a **Dueling Network** (or **DN** for short). Yet after all attempts (and surprisingly enough), we never reached a stage of confidence that would settle this approach as being better than the previous attempts.
+
+### Attempts Using DNs
+
+- Using the **benchmark** `model` configuration, which was revealed above, we strived to achieve better results that those obtained by the previous attempts. However, that was not the case.
+
+- See the [`NavigationUsingDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDuelingNetwork.ipynb) notebook for implementation details and the rewards (*i.e.* the results) obtained after training and testing.
+
+### Rewards Plot
+
+The following graph illustrated the outcomes:
+
+![](./plots/RewardsUsingDuelingNetwork.png)
+
+The trained agent, as witnesses in the accompanying   [`NavigationUsingDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDuelingNetwork.ipynb) notebook file, revealed the following results:
+
+```
+EPISODE 100	AVG SCORE: 8.7700	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
+EPISODE 200	AVG SCORE: 11.8600	EPS: 0.0100	LEARNING RATE: [0.00010727666846424718]
+EPISODE 244	AVG SCORE: 13.1000	EPS: 0.0100	LEARNING RATE: [7.712247038635614e-05]]
+
+Environment solved in 144 episodes.
+Average score: 13.1.
+Model saved successfully.
+
+Solved in 6.34 minutes.
+```
+
+Here, the number of episodes are significantly higher, and the time taken to solve the environment took much longer than anticipated.
 
 ## Parameter Tuning
 
