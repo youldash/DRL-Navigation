@@ -32,17 +32,16 @@ Input nodes (37) -> FC Layer (128 nodes, ReLU activation) -> FC Layer (32 nodes,
 ```
 > At this point it is imperative to note that this particular `model` configuration was considered as the foundation to be used in our future tests of the agent (for further comparisons), since the results looked promising. See the [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook for implementation details and the rewards (*i.e.* the results) obtained after training and testing.
 
-
-#### Rewards Plot
+### Rewards Plot
 
 The following graph (*i.e.* plot) illustrated two measurable outcomes. These are
 
 - the rewards per-episode within the training phase, in addition to
-- The moving mean.
+- the moving mean.
 
 ![](./plots/RewardsUsingDQN.png)
 
-The trained agent, as witnesses in the accompanying   [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results 
+The trained agent, as witnesses in the accompanying   [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results:
 
 ```
 EPISODE 100	AVG SCORE: 9.6000	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
@@ -54,6 +53,37 @@ Model saved successfully.
 
 Solved in 3.63 minutes.
 ```
+
+## The Double Deep Q-Network Algorithm
+
+After we concluded our tests using the baseline DQN algorithm, we sought to include a version of the **Double Deep Q-Network (Double-DQN)** algorithm. According to [literature](https://arxiv.org/abs/1509.06461), this approach aims to reduce the overestimations that are otherwise detected in the aforementioned approach (*i.e.* the vanilla **DQN**) while training in game simulations/environments. See `model.py` for more details.
+
+### Attempts Using Double-DQNs
+
+- Using the **benchmark** `model` configuration, which was revealed above, we strived to achieve better results that those obtained by the previous attempts. However, that was not the case.
+
+- See the [`NavigationUsingDoubleDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQN.ipynb) notebook for implementation details and the rewards (*i.e.* the results) obtained after training and testing.
+
+### Rewards Plot
+
+The following graph illustrated the outcomes:
+
+![](./plots/RewardsUsingDoubleDQN.png)
+
+The trained agent, as witnesses in the accompanying   [`NavigationUsingDoubleDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQN.ipynb) notebook file, revealed the following results:
+
+```
+EPISODE 100	AVG SCORE: 10.6100	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
+EPISODE 182	AVG SCORE: 13.0300	EPS: 0.0100	LEARNING RATE: [0.00012278292199717212]
+
+Environment solved in 82 episodes.
+Average score: 13.03.
+Model saved successfully.
+
+Solved in 3.71 minutes.
+```
+
+Here, the number of episodes exceeded the **benchmark** `model` by 8 episodes.
 
 ## Parameter Tuning
 
