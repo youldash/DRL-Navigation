@@ -178,6 +178,51 @@ def dqn(n_episodes=2e3, max_t=int(1e3), eps_start=1., eps_end=1e-2, eps_decay=99
     """
 ```
 
+In addition to the above parameters the following parameter segments are also adjustable (see the `agent.py` Python script for details):
+
+``` Python
+""" Hyperparameter setup.
+"""
+BUFFER_SIZE = int(1e5)  # Replay buffer size.
+BATCH_SIZE = 64         # Minibatch size.
+LEARNING_RATE = 4.8e-4  # Learning rate.
+THRESHOLD = 4           # How often to update the network.
+GAMMA = 99e-2           # Discount factor.
+TAU = 1e-2              # For soft update of target parameters.
+```
+
+``` Python
+double_dqn = False
+""" True for the Double-DQN method.
+"""
+
+dueling_network = False
+""" True for the Dueling Network (DN) method.
+"""
+
+prioritized_replay = False
+""" True for the Prioritized Replay memory buffer.
+"""
+```
+
+``` Python
+def __init__(
+    self, state_size, action_size, seed, lr_decay=9999e-4,
+    double_dqn=False, dueling_network=False, prioritized_replay=False):
+    """ Initialize an Agent instance.
+    
+    Params
+    ======
+        state_size (int): Dimension of each state
+        action_size (int): Dimension of each action
+        seed (int): Random seed
+        lr_decay (float): Multiplicative factor of learning rate decay
+        double_dqn (bool): Toogle for using the Double-DQN method
+        dueling_network (bool): Toogle for using the Dueling Network (DN) method
+        prioritized_replay (bool): Toogle for using the Prioritized Replay method
+        """
+```
+
 ## Conclusion and Future Work
 
 
