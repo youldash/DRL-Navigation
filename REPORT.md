@@ -44,7 +44,7 @@ The following graph (*i.e.* plot) illustrated two measurable outcomes. These are
 
 The trained agent, as witnesses in the accompanying   [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results 
 
-'''
+```
 EPISODE 100	AVG SCORE: 9.6000	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
 EPISODE 174	AVG SCORE: 13.0200	EPS: 0.0104	LEARNING RATE: [0.00013037578502107008]
 
@@ -53,7 +53,7 @@ Average score: 13.02.
 Model saved successfully.
 
 Solved in 3.63 minutes.
-'''
+```
 
 ## Parameter Tuning
 
