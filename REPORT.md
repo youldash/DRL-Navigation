@@ -21,10 +21,40 @@ Initial attempts were made for developing `model` implementations of a *value-ba
 
 ### Early Attempts
 
-- Our first `model` training configuration was based on a DQN with **two Fully-connected (FC) layers (hosting 512 nodes in each layer)**. This `model` configuration solved the virtual world (or environment) in a number of episodes that far exceeded 700. This was set as a point of reference to beat in our next attempts. The Neural Network architecture was based on the following configuration:
+- Our first `model` training configuration was based on a DQN with **two Fully-connected (FC) layers (hosting 512 nodes in each layer)**. This `model` configuration solved the virtual world (or environment) in a number of episodes that far exceeded 700. This was set as a point of reference to beat in our next attempts. The `model`'s [Neural Network (NN)](https://pathmind.com/wiki/neural-network) architecture was adjusted based on the following configuration:
 ```
-Input nodes (37) -> FC Layer (512 nodes, ReLU activation) -> Fully Connected Layer (512 nodes, ReLU activation) -> Output nodes (4)
+Input nodes (37) -> FC Layer (512 nodes, ReLU activation) -> FC Layer (512 nodes, ReLU activation) -> Output nodes (4)
 ```
 
-- Further attempts were made by amending the `model` architecture (*i.e.* by increasing the number of layers, as well as increasing the number of nodes in the `model`). These experiments yielded **poorer** results when compared to the **benchmark** configuration above, leading us to further adjust the `model` by having **two FC layers (having 128 nodes in the first, and 32 nodes in the second)**. This architecture solved the environment in less than 500 episodes.
+- Further attempts were made by amending the `model` architecture (*i.e.* by increasing the number of layers, as well as increasing the number of nodes in the `model`). These experiments yielded **poorer** results when compared to the **benchmark** configuration above, leading us to further adjust the `model` by having **two FC layers (having 128 nodes in the first, and 32 nodes in the second)**. This architecture solved the environment in less than 500 episodes. This architecture is summarized as the following:
+```
+Input nodes (37) -> FC Layer (128 nodes, ReLU activation) -> FC Layer (32 nodes, ReLU activation) -> Output nodes (4)
+```
+> At this point it is imperative to note that this particular `model` configuration was considered as the foundation to be used in our future tests of the agent (for further comparisons), since the results looked promising. See the [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook for implementation details and the rewards (*i.e.* the results) obtained after training and testing.
 
+
+#### Rewards Plot
+
+The following graph (*i.e.* plot) illustrated two measurable outcomes. These are
+
+- the rewards per-episode within the training phase, in addition to
+- The moving mean.
+
+![](./plots/RewardsUsingDQN.png)
+
+The trained agent, as witnesses in the accompanying   [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results 
+
+'''
+EPISODE 100	AVG SCORE: 9.6000	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
+EPISODE 174	AVG SCORE: 13.0200	EPS: 0.0104	LEARNING RATE: [0.00013037578502107008]
+
+Environment solved in 74 episodes.
+Average score: 13.02.
+Model saved successfully.
+
+Solved in 3.63 minutes.
+'''
+
+## Parameter Tuning
+
+TBA...
