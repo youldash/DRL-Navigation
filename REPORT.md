@@ -13,7 +13,7 @@ As mentioned in the [`README.md`](https://github.com/youldash/DRL-Navigation/blo
 1. The [Deep Q-Network (DQN)](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf) algorithm.
 2. The [Double-DQN](https://arxiv.org/abs/1509.06461) algorithm.
 3. The [Dueling Q-Network (DN)](https://arxiv.org/abs/1511.06581) algorithm.
-4. The [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) memory buffer algorithm.
+4. The [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) memory buffer algorithm (not fully tested).
 
 ## The Deep Q-Network Algorithm
 
@@ -41,7 +41,7 @@ The following graph (*i.e.* plot) illustrated two measurable outcomes. These are
 
 ![](./plots/RewardsUsingDQN.png)
 
-The trained agent, as witnesses in the accompanying   [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results:
+The trained agent, as witnesses in the accompanying [`NavigationUsingDQN.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDQN.ipynb) notebook file, revealed the following results:
 
 ```
 EPISODE 100	AVG SCORE: 9.6000	EPS: 0.0270	LEARNING RATE: [0.00022711322607504007]
@@ -116,6 +116,23 @@ Solved in 6.34 minutes.
 ```
 
 Here, the number of episodes are significantly higher, and the time taken to solve the environment took much longer than anticipated.
+
+## Combining Double-DQNs With Dueling Networks
+
+After concluding our tests using the **DN** architecture, we sought to accommodate a version that would combine both **Double-DQNs** and **DNs** in one reliable architecture to see whether this combination might actually end up outperforming all the previous test runs. To achieve this, we enabled/allowed ALL of our notebooks to globally set the appropriate parameters/flags prior training and testing.
+
+In the [`NavigationUsingDoubleDQNWithDuelingNetwork.ipynb`](https://github.com/youldash/DRL-Navigation/blob/master/NavigationUsingDoubleDQNWithDuelingNetwork.ipynb) notebook file you can see that there are three flags that can be toggled (on or off). The following snippet depicts these three variables:
+
+``` Python
+""" Global configuration.
+"""
+TOGGLE_DOUBLE_DQN = True            # True for the Double-DQN method. False for the fixed Q-target method.
+TOGGLE_DUELING_NETWORK = True       # True for the Dueling Network (DN) method.
+TOGGLE_PRIORITIZED_REPLAY = False   # True for the Prioritized Replay memory buffer.
+```
+
+
+
 
 ## Parameter Tuning
 
