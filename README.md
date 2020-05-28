@@ -83,3 +83,7 @@ If you'd like to train the agent on AWS (and have not [enabled a virtual screen]
 After you have followed the instructions above, open `Navigation.ipynb` (located in the `p1_navigation/` folder in the DRLND GitHub repository) and follow the instructions to learn how to use the Python API to control the agent.
 
 In the last code cell of the `Navigation.ipynb` notebook, you'll learn how to design and observe an agent that always selects random actions at each time step. The goal of this project is to create an agent that performs much better!
+
+## Results
+
+See [`REPORT.md`](https://github.com/youldash/DRL-Navigation/blob/master/REPORT.md) for a detailed attempts made to solve the challenges presented. Feel free to use the code and notebooks in this repo for learning purposes, and perhaps to beat the attempts mentioned in the report.
